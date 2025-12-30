@@ -7,6 +7,91 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+    // Apply theme immediately to prevent flash
+    (function() {
+        const savedTheme = localStorage.getItem('flopiq-theme') || 'night-session';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+</script>
+<style>
+    /* Theme: Night Session (Default - Discord-inspired) */
+    :root, [data-theme="night-session"] {
+        --bg-darkest: #111214;
+        --bg-darker: #1e1f22;
+        --bg-dark: #2b2d31;
+        --bg-default: #313338;
+        --bg-light: #383a40;
+        --accent-primary: #5865F2;
+        --accent-primary-hover: #4752c4;
+        --accent-secondary: #F0B232;
+        --accent-success: #23A559;
+        --accent-danger: #DA373C;
+        --accent-info: #248046;
+        --text-normal: #F2F3F5;
+        --text-muted: #B5BAC1;
+        --text-faint: #949BA4;
+        --text-link: #00A8FC;
+        --glow-color: rgba(88, 101, 242, 0.15);
+        --gradient-start: #5865F2;
+        --gradient-end: #818cf8;
+    }
+
+    /* Theme: Felt Green (Classic poker table) */
+    [data-theme="felt-green"] {
+        --bg-darkest: #0a1810;
+        --bg-darker: #122318;
+        --bg-dark: #1a472a;
+        --bg-default: #1f5233;
+        --bg-light: #256b3b;
+        --accent-primary: #c9a227;
+        --accent-primary-hover: #b8922a;
+        --accent-secondary: #d4af37;
+        --accent-success: #4ade80;
+        --accent-danger: #ef4444;
+        --accent-info: #60a5fa;
+        --text-normal: #f0f4e8;
+        --text-muted: #c4d4b8;
+        --text-faint: #8fa882;
+        --text-link: #7dd3fc;
+        --glow-color: rgba(201, 162, 39, 0.2);
+        --gradient-start: #c9a227;
+        --gradient-end: #fbbf24;
+    }
+
+    /* Theme: Casino Gold (High-stakes luxury) */
+    [data-theme="casino-gold"] {
+        --bg-darkest: #0d0d0d;
+        --bg-darker: #171717;
+        --bg-dark: #1f1f1f;
+        --bg-default: #262626;
+        --bg-light: #333333;
+        --accent-primary: #d4af37;
+        --accent-primary-hover: #c9a227;
+        --accent-secondary: #991b1b;
+        --accent-success: #16a34a;
+        --accent-danger: #dc2626;
+        --accent-info: #0ea5e9;
+        --text-normal: #fafafa;
+        --text-muted: #d4d4d4;
+        --text-faint: #a3a3a3;
+        --text-link: #f59e0b;
+        --glow-color: rgba(212, 175, 55, 0.25);
+        --gradient-start: #d4af37;
+        --gradient-end: #fcd34d;
+    }
+
+    /* Apply CSS variables globally */
+    body {
+        background-color: var(--bg-darkest);
+        color: var(--text-normal);
+    }
+
+    ::selection {
+        background-color: var(--accent-primary);
+        color: white;
+    }
+</style>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
     tailwind.config = {
@@ -14,24 +99,21 @@
         theme: {
             extend: {
                 colors: {
-                    // Discord-inspired palette mapping
-                    "bg-darkest": "#111214", // Main page background
-                    "bg-darker": "#1e1f22",  // Secondary sections
-                    "bg-dark": "#2b2d31",    // Cards/Containers
-                    "bg-default": "#313338", // Elements
-                    "bg-light": "#383a40",   // Hovers
-                    // Brand colors
-                    "blurple": "#5865F2",
-                    "blurple-hover": "#4752c4",
-                    "sun-gold": "#F0B232",
-                    "teal-deep": "#248046",
-                    "green": "#23A559",
-                    "red": "#DA373C",
-                    // Text
-                    "text-normal": "#F2F3F5",
-                    "text-muted": "#B5BAC1",
-                    "text-faint": "#949BA4",
-                    "text-link": "#00A8FC",
+                    "bg-darkest": "var(--bg-darkest)",
+                    "bg-darker": "var(--bg-darker)",
+                    "bg-dark": "var(--bg-dark)",
+                    "bg-default": "var(--bg-default)",
+                    "bg-light": "var(--bg-light)",
+                    "accent": "var(--accent-primary)",
+                    "accent-hover": "var(--accent-primary-hover)",
+                    "accent-secondary": "var(--accent-secondary)",
+                    "green": "var(--accent-success)",
+                    "red": "var(--accent-danger)",
+                    "teal-deep": "var(--accent-info)",
+                    "text-normal": "var(--text-normal)",
+                    "text-muted": "var(--text-muted)",
+                    "text-faint": "var(--text-faint)",
+                    "text-link": "var(--text-link)",
                 },
                 fontFamily: {
                     "sans": ["Inter", "sans-serif"],
@@ -45,7 +127,7 @@
                     "2xl": "24px",
                 },
                 boxShadow: {
-                    "glow": "0 0 20px rgba(88, 101, 242, 0.15)",
+                    "glow": "0 0 20px var(--glow-color)",
                 }
             },
         },
@@ -59,14 +141,17 @@
         .text-balance {
             text-wrap: balance;
         }
+        .accent-gradient {
+            background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+        }
     }
 </style>
 </head>
-<body class="bg-bg-darkest font-sans text-text-normal overflow-x-hidden antialiased selection:bg-blurple selection:text-white">
+<body class="bg-bg-darkest font-sans text-text-normal overflow-x-hidden antialiased">
 <div class="relative flex min-h-screen flex-col">
 <header class="sticky top-0 z-50 flex w-full items-center justify-between border-b border-bg-dark bg-bg-darkest/90 backdrop-blur-md px-4 py-4 md:px-8 lg:px-12">
 <div class="flex items-center gap-3">
-<div class="flex items-center justify-center size-10 bg-blurple rounded-lg text-white shadow-lg shadow-blurple/20">
+<div class="flex items-center justify-center size-10 bg-accent rounded-lg text-white shadow-lg shadow-glow">
 <span class="material-symbols-outlined text-[24px]">psychology</span>
 </div>
 <h2 class="text-text-normal text-lg font-bold tracking-tight font-sans">FlopIQ</h2>
@@ -75,32 +160,61 @@
 <a class="text-text-muted hover:text-text-normal text-sm font-medium transition-colors" href="#features">Features</a>
 <a class="text-text-muted hover:text-text-normal text-sm font-medium transition-colors" href="#players">Players</a>
 <a class="text-text-muted hover:text-text-normal text-sm font-medium transition-colors" href="#coaches">Coaches</a>
-<a class="text-text-muted hover:text-text-normal text-sm font-medium transition-colors" href="#methodology">Methodology</a>
+<a class="text-text-muted hover:text-text-normal text-sm font-medium transition-colors" href="#not-a-solver">Philosophy</a>
 </nav>
-<button class="flex cursor-pointer items-center justify-center rounded-md bg-blurple px-5 py-2 text-white text-sm font-semibold transition-all hover:bg-blurple-hover hover:shadow-glow active:translate-y-[1px]">
+<div class="flex items-center gap-4">
+<!-- Theme Switcher -->
+<div class="flex items-center gap-1 p-1 bg-bg-dark rounded-lg border border-bg-light" id="theme-switcher">
+    <button 
+        onclick="setTheme('felt-green')" 
+        class="theme-btn group relative size-8 rounded-md flex items-center justify-center transition-all hover:bg-bg-light" 
+        data-theme-btn="felt-green"
+        title="Felt Green"
+    >
+        <span class="size-5 rounded-full bg-[#1a472a] border-2 border-[#c9a227] group-hover:scale-110 transition-transform"></span>
+    </button>
+    <button 
+        onclick="setTheme('casino-gold')" 
+        class="theme-btn group relative size-8 rounded-md flex items-center justify-center transition-all hover:bg-bg-light" 
+        data-theme-btn="casino-gold"
+        title="Casino Gold"
+    >
+        <span class="size-5 rounded-full bg-[#1f1f1f] border-2 border-[#d4af37] group-hover:scale-110 transition-transform"></span>
+    </button>
+    <button 
+        onclick="setTheme('night-session')" 
+        class="theme-btn group relative size-8 rounded-md flex items-center justify-center transition-all hover:bg-bg-light" 
+        data-theme-btn="night-session"
+        title="Night Session"
+    >
+        <span class="size-5 rounded-full bg-[#111214] border-2 border-[#5865F2] group-hover:scale-110 transition-transform"></span>
+    </button>
+</div>
+<button class="flex cursor-pointer items-center justify-center rounded-md bg-accent px-5 py-2 text-white text-sm font-semibold transition-all hover:bg-accent-hover hover:shadow-glow active:translate-y-[1px]">
             Request Access
         </button>
+</div>
 </header>
 <section class="relative flex flex-col items-center justify-center pt-20 pb-24 px-4 md:px-10 lg:pt-32 lg:pb-40 overflow-hidden">
 <div class="absolute inset-0 z-0 select-none pointer-events-none">
 <div class="absolute inset-0 w-full h-full bg-cover bg-center opacity-10 mix-blend-overlay" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBy9mVJtP0bndaaGTMrLKH5oN_iNC7VV8VuJGo8ucRzflsL5HeEdL4ZcjRUxHdb0QVbE1O2aKTLCS7bj_SFFvodl3hkf021zAGojFzG8QTPWuipuRBLlh5p5dz5zM-WCj7Krfl_1ryYFJWJxVuIg3iTCNaHrIOV4nLjX9aUILJ9KqQEZzI8EbhqsqxFGLQ1cdxofMmH6IMRUyVQdSIMvdlhYv2LcwQFU8yBu0567c2sX3IvC_LLN4CtNupU2oP2EBQGcxyt4dJd");'></div>
 <div class="absolute inset-0 bg-gradient-to-b from-bg-darkest via-bg-darkest/80 to-bg-darkest"></div>
-<div class="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blurple/10 rounded-full blur-[100px]"></div>
+<div class="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full blur-[100px]" style="background: var(--glow-color);"></div>
 </div>
 <div class="relative z-10 max-w-5xl text-center flex flex-col items-center gap-6">
-<div class="inline-flex items-center gap-2 rounded-full border border-blurple/30 bg-blurple/10 px-4 py-1.5 mb-2 transition-colors hover:bg-blurple/15 hover:border-blurple/50 cursor-default">
+<div class="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 mb-2 transition-colors hover:bg-accent/15 hover:border-accent/50 cursor-default">
 <span class="flex h-2 w-2 rounded-full bg-green shadow-[0_0_8px_rgba(35,165,89,0.6)]"></span>
 <span class="text-xs font-mono font-medium tracking-wide text-text-normal uppercase">Early Access Alpha</span>
 </div>
 <h1 class="text-5xl md:text-7xl font-black leading-[1.05] tracking-tight text-white drop-shadow-sm text-balance">
                 Understand the Game. <br/>
-<span class="text-transparent bg-clip-text bg-gradient-to-r from-blurple to-indigo-400">Discuss the Hand.</span>
+<span class="text-transparent bg-clip-text accent-gradient">Discuss the Hand.</span>
 </h1>
 <p class="text-text-muted text-lg md:text-xl font-normal leading-relaxed max-w-2xl text-balance">
                 FlopIQ is the social-first intelligence platform for serious players. Move beyond rote memorization and start reasoning with a community.
             </p>
 <div class="flex flex-col sm:flex-row gap-4 mt-8 w-full justify-center">
-<button class="h-12 px-8 rounded-md bg-blurple text-white font-semibold text-base hover:bg-blurple-hover shadow-lg shadow-blurple/20 transition-all transform hover:-translate-y-0.5">
+<button class="h-12 px-8 rounded-md bg-accent text-white font-semibold text-base hover:bg-accent-hover shadow-lg shadow-glow transition-all transform hover:-translate-y-0.5">
                     Start Analyzing
                 </button>
 <button class="h-12 px-8 rounded-md bg-bg-dark border border-bg-light text-text-normal font-medium text-base hover:bg-bg-light hover:border-text-muted/30 transition-all">
@@ -144,10 +258,10 @@
 <div class="group relative flex flex-col gap-6 rounded-xl bg-bg-dark p-8 border border-transparent hover:border-bg-light transition-all duration-300">
 <div class="absolute inset-0 bg-gradient-to-br from-bg-light/10 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
 <div class="relative z-10 flex items-start justify-between">
-<div class="size-12 rounded-lg bg-bg-light flex items-center justify-center text-sun-gold">
+<div class="size-12 rounded-lg bg-bg-light flex items-center justify-center text-accent-secondary">
 <span class="material-symbols-outlined text-[28px]">data_table</span>
 </div>
-<span class="font-mono text-xs text-sun-gold bg-sun-gold/10 px-2 py-1 rounded">FAILURE POINT</span>
+<span class="font-mono text-xs text-accent-secondary bg-accent-secondary/10 px-2 py-1 rounded">FAILURE POINT</span>
 </div>
 <div class="relative z-10 flex flex-col gap-3">
 <h3 class="text-text-normal text-xl font-bold">Dry Solver Outputs</h3>
@@ -157,36 +271,77 @@
 </div>
 </div>
 </section>
-<section class="relative py-24 px-4 md:px-10 bg-bg-darkest" id="features">
+
+<!-- What FlopIQ is NOT Section -->
+<section class="relative py-24 px-4 md:px-10 bg-bg-darkest border-t border-bg-dark" id="not-a-solver">
+<div class="max-w-6xl mx-auto">
+<div class="text-center mb-16">
+<span class="text-red font-mono text-xs font-bold tracking-wider uppercase mb-3 block">Critical Distinction</span>
+<h2 class="text-white text-3xl md:text-5xl font-bold mb-6">What FlopIQ is <span class="text-red">NOT</span></h2>
+<p class="text-text-muted text-lg max-w-2xl mx-auto">This positioning is intentional. We compete with chaos, not with solvers.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="group flex flex-col p-8 rounded-xl bg-bg-darker border border-bg-dark hover:border-red/30 transition-all duration-300">
+<div class="size-14 mb-6 rounded-xl bg-red/10 border border-red/20 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+<span class="material-symbols-outlined text-red text-3xl">close</span>
+</div>
+<h3 class="text-text-normal font-bold text-xl mb-3">Not a Solver Replacement</h3>
+<p class="text-text-muted leading-relaxed">We don't compete with PioSolver, GTO Wizard, or commercial solvers. They won their market. We play a different game.</p>
+</div>
+<div class="group flex flex-col p-8 rounded-xl bg-bg-darker border border-bg-dark hover:border-red/30 transition-all duration-300">
+<div class="size-14 mb-6 rounded-xl bg-red/10 border border-red/20 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+<span class="material-symbols-outlined text-red text-3xl">close</span>
+</div>
+<h3 class="text-text-normal font-bold text-xl mb-3">Not "Click for Answers"</h3>
+<p class="text-text-muted leading-relaxed">We teach reasoning, not rote memorization. If you want instant GTO solutions, this isn't the tool. We're about the <em>why</em>, not the <em>what</em>.</p>
+</div>
+<div class="group flex flex-col p-8 rounded-xl bg-bg-darker border border-bg-dark hover:border-red/30 transition-all duration-300">
+<div class="size-14 mb-6 rounded-xl bg-red/10 border border-red/20 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+<span class="material-symbols-outlined text-red text-3xl">close</span>
+</div>
+<h3 class="text-text-normal font-bold text-xl mb-3">Not an Arms Race</h3>
+<p class="text-text-muted leading-relaxed">Solvers compete on accuracy and speed. We compete on interpretation, explanation, social proof, and teaching. Different battlefield.</p>
+</div>
+</div>
+<div class="mt-16 text-center">
+<div class="inline-flex items-center gap-3 px-6 py-4 rounded-xl bg-bg-dark border border-bg-light">
+<span class="material-symbols-outlined text-accent text-2xl">lightbulb</span>
+<p class="text-text-muted text-sm md:text-base"><strong class="text-text-normal">Social is the operating system</strong>, not an add-on. Discussion is the product, not a feature.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="relative py-24 px-4 md:px-10 bg-bg-darker border-t border-bg-dark" id="features">
 <div class="max-w-6xl mx-auto">
 <div class="text-center mb-20">
-<span class="text-blurple font-mono text-xs font-bold tracking-wider uppercase mb-3 block">Platform Features</span>
+<span class="text-accent font-mono text-xs font-bold tracking-wider uppercase mb-3 block">Platform Features</span>
 <h2 class="text-white text-3xl md:text-5xl font-bold mb-6">Built for Structured Reasoning</h2>
 <p class="text-text-muted text-lg max-w-2xl mx-auto">A suite of tools designed to capture your thought process, facilitate discussion, and refine your logic.</p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-<div class="group flex flex-col p-6 rounded-xl bg-bg-darker border border-bg-dark hover:bg-bg-dark hover:border-blurple/30 transition-all duration-300">
-<div class="size-10 mb-5 text-blurple bg-blurple/10 rounded-md flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+<div class="group flex flex-col p-6 rounded-xl bg-bg-dark border border-bg-light hover:border-accent/30 transition-all duration-300">
+<div class="size-10 mb-5 text-accent bg-accent/10 rounded-md flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
 <span class="material-symbols-outlined">edit_note</span>
 </div>
 <h3 class="text-text-normal font-bold text-lg mb-3">Intuitive Entry</h3>
 <p class="text-text-muted text-sm leading-relaxed">Input hands quickly with a UI focused on positions and action sequences. No clunky suit selectors.</p>
 </div>
-<div class="group flex flex-col p-6 rounded-xl bg-bg-darker border border-bg-dark hover:bg-bg-dark hover:border-blurple/30 transition-all duration-300">
+<div class="group flex flex-col p-6 rounded-xl bg-bg-dark border border-bg-light hover:border-accent/30 transition-all duration-300">
 <div class="size-10 mb-5 text-green bg-green/10 rounded-md flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
 <span class="material-symbols-outlined">replay</span>
 </div>
 <h3 class="text-text-normal font-bold text-lg mb-3">Visual Replayer</h3>
 <p class="text-text-muted text-sm leading-relaxed">Watch the hand unfold step-by-step. Pause, annotate specific moments, and branch into "what-if" scenarios.</p>
 </div>
-<div class="group flex flex-col p-6 rounded-xl bg-bg-darker border border-bg-dark hover:bg-bg-dark hover:border-blurple/30 transition-all duration-300">
-<div class="size-10 mb-5 text-sun-gold bg-sun-gold/10 rounded-md flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+<div class="group flex flex-col p-6 rounded-xl bg-bg-dark border border-bg-light hover:border-accent/30 transition-all duration-300">
+<div class="size-10 mb-5 text-accent-secondary bg-accent-secondary/10 rounded-md flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
 <span class="material-symbols-outlined">forum</span>
 </div>
 <h3 class="text-text-normal font-bold text-lg mb-3">Threaded Logic</h3>
 <p class="text-text-muted text-sm leading-relaxed">Discussions are attached to specific streets or actions. Keep the debate focused on the decision point.</p>
 </div>
-<div class="group flex flex-col p-6 rounded-xl bg-bg-darker border border-bg-dark hover:bg-bg-dark hover:border-blurple/30 transition-all duration-300">
+<div class="group flex flex-col p-6 rounded-xl bg-bg-dark border border-bg-light hover:border-accent/30 transition-all duration-300">
 <div class="size-10 mb-5 text-teal-deep bg-teal-deep/10 rounded-md flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
 <span class="material-symbols-outlined">psychology_alt</span>
 </div>
@@ -196,7 +351,7 @@
 </div>
 </div>
 </section>
-<section class="py-24 px-4 md:px-10 bg-bg-darker border-y border-bg-dark">
+<section class="py-24 px-4 md:px-10 bg-bg-darkest border-t border-bg-dark">
 <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 lg:gap-24">
 <div class="flex flex-col gap-6" id="players">
 <div class="flex items-center gap-4">
@@ -229,7 +384,7 @@
 </div>
 </div>
 <div class="mt-6">
-<a class="text-blurple font-mono text-sm font-bold hover:text-blurple-hover transition-colors flex items-center gap-2 group w-max" href="#">
+<a class="text-accent font-mono text-sm font-bold hover:text-accent-hover transition-colors flex items-center gap-2 group w-max" href="#">
                         Explore Player Features <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
 </a>
 </div>
@@ -237,7 +392,7 @@
 <div class="flex flex-col gap-6 md:border-l md:border-bg-dark md:pl-16" id="coaches">
 <div class="flex items-center gap-4">
 <div class="p-3 rounded-lg bg-bg-dark border border-bg-light">
-<span class="material-symbols-outlined text-sun-gold text-3xl">school</span>
+<span class="material-symbols-outlined text-accent-secondary text-3xl">school</span>
 </div>
 <h2 class="text-2xl font-bold text-text-normal">For Coaches</h2>
 </div>
@@ -246,49 +401,49 @@
                 </p>
 <div class="flex flex-col gap-4 mt-4">
 <div class="flex gap-4 items-start group">
-<div class="mt-1 size-5 rounded-full bg-sun-gold/10 flex items-center justify-center shrink-0 group-hover:bg-sun-gold/20 transition-colors">
-<span class="material-symbols-outlined text-sun-gold text-[14px] font-bold">check</span>
+<div class="mt-1 size-5 rounded-full bg-accent-secondary/10 flex items-center justify-center shrink-0 group-hover:bg-accent-secondary/20 transition-colors">
+<span class="material-symbols-outlined text-accent-secondary text-[14px] font-bold">check</span>
 </div>
 <span class="text-text-normal group-hover:text-white transition-colors">Organize student hands into review queues.</span>
 </div>
 <div class="flex gap-4 items-start group">
-<div class="mt-1 size-5 rounded-full bg-sun-gold/10 flex items-center justify-center shrink-0 group-hover:bg-sun-gold/20 transition-colors">
-<span class="material-symbols-outlined text-sun-gold text-[14px] font-bold">check</span>
+<div class="mt-1 size-5 rounded-full bg-accent-secondary/10 flex items-center justify-center shrink-0 group-hover:bg-accent-secondary/20 transition-colors">
+<span class="material-symbols-outlined text-accent-secondary text-[14px] font-bold">check</span>
 </div>
 <span class="text-text-normal group-hover:text-white transition-colors">Provide annotated feedback directly on the timeline.</span>
 </div>
 <div class="flex gap-4 items-start group">
-<div class="mt-1 size-5 rounded-full bg-sun-gold/10 flex items-center justify-center shrink-0 group-hover:bg-sun-gold/20 transition-colors">
-<span class="material-symbols-outlined text-sun-gold text-[14px] font-bold">check</span>
+<div class="mt-1 size-5 rounded-full bg-accent-secondary/10 flex items-center justify-center shrink-0 group-hover:bg-accent-secondary/20 transition-colors">
+<span class="material-symbols-outlined text-accent-secondary text-[14px] font-bold">check</span>
 </div>
 <span class="text-text-normal group-hover:text-white transition-colors">Create private study groups for your community.</span>
 </div>
 </div>
 <div class="mt-6">
-<a class="text-sun-gold font-mono text-sm font-bold hover:text-yellow-400 transition-colors flex items-center gap-2 group w-max" href="#">
+<a class="text-accent-secondary font-mono text-sm font-bold hover:opacity-80 transition-colors flex items-center gap-2 group w-max" href="#">
                         See Coach Tools <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
 </a>
 </div>
 </div>
 </div>
 </section>
-<section class="py-24 px-4 bg-bg-darkest" id="methodology">
+<section class="py-24 px-4 bg-bg-darker border-t border-bg-dark" id="methodology">
 <div class="max-w-4xl mx-auto text-center">
 <h2 class="text-white text-2xl md:text-3xl font-bold mb-10">Clarity over Complexity</h2>
 <div class="flex flex-wrap justify-center gap-4">
-<div class="flex items-center gap-2 px-5 py-3 rounded-full border border-bg-light bg-bg-darker text-text-muted hover:border-red/50 hover:bg-bg-dark hover:text-text-normal transition-all duration-300 select-none">
+<div class="flex items-center gap-2 px-5 py-3 rounded-full border border-bg-light bg-bg-dark text-text-muted hover:border-red/50 hover:text-text-normal transition-all duration-300 select-none">
 <span class="material-symbols-outlined text-red text-lg">close</span>
 <span class="text-sm font-medium">No Confusing Solver Charts</span>
 </div>
-<div class="flex items-center gap-2 px-5 py-3 rounded-full border border-bg-light bg-bg-darker text-text-muted hover:border-red/50 hover:bg-bg-dark hover:text-text-normal transition-all duration-300 select-none">
+<div class="flex items-center gap-2 px-5 py-3 rounded-full border border-bg-light bg-bg-dark text-text-muted hover:border-red/50 hover:text-text-normal transition-all duration-300 select-none">
 <span class="material-symbols-outlined text-red text-lg">close</span>
 <span class="text-sm font-medium">No Raw EV Spreadsheets</span>
 </div>
-<div class="flex items-center gap-2 px-5 py-3 rounded-full border border-bg-light bg-bg-darker text-text-muted hover:border-red/50 hover:bg-bg-dark hover:text-text-normal transition-all duration-300 select-none">
+<div class="flex items-center gap-2 px-5 py-3 rounded-full border border-bg-light bg-bg-dark text-text-muted hover:border-red/50 hover:text-text-normal transition-all duration-300 select-none">
 <span class="material-symbols-outlined text-red text-lg">close</span>
 <span class="text-sm font-medium">No Gambling Noise</span>
 </div>
-<div class="flex items-center gap-2 px-5 py-3 rounded-full border border-bg-light bg-bg-darker text-text-muted hover:border-red/50 hover:bg-bg-dark hover:text-text-normal transition-all duration-300 select-none">
+<div class="flex items-center gap-2 px-5 py-3 rounded-full border border-bg-light bg-bg-dark text-text-muted hover:border-red/50 hover:text-text-normal transition-all duration-300 select-none">
 <span class="material-symbols-outlined text-red text-lg">close</span>
 <span class="text-sm font-medium">No Distractions</span>
 </div>
@@ -298,15 +453,15 @@
             </p>
 </div>
 </section>
-<section class="py-32 px-4 text-center bg-bg-darker relative overflow-hidden border-t border-bg-dark">
-<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blurple/10 rounded-full blur-3xl pointer-events-none"></div>
+<section class="py-32 px-4 text-center bg-bg-darkest relative overflow-hidden border-t border-bg-dark">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-3xl pointer-events-none" style="background: var(--glow-color);"></div>
 <div class="relative z-10 max-w-2xl mx-auto flex flex-col items-center gap-8">
 <h2 class="text-white text-4xl md:text-5xl font-black tracking-tight">Join the Inner Circle</h2>
 <p class="text-text-muted text-lg text-balance">
                 Stop guessing. Start understanding. Join a community of serious players dedicated to the craft of poker.
             </p>
 <div class="flex flex-col items-center gap-3 w-full">
-<button class="flex w-full sm:w-auto cursor-pointer items-center justify-center rounded-md h-14 px-10 bg-blurple text-white text-lg font-bold shadow-lg shadow-blurple/20 hover:bg-blurple-hover hover:scale-[1.02] transition-all">
+<button class="flex w-full sm:w-auto cursor-pointer items-center justify-center rounded-md h-14 px-10 bg-accent text-white text-lg font-bold shadow-lg shadow-glow hover:bg-accent-hover hover:scale-[1.02] transition-all">
                     Request Early Access
                 </button>
 <p class="text-text-faint text-xs font-mono">Restricted access during beta. No credit card required.</p>
@@ -317,7 +472,7 @@
 <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
 <div class="col-span-1 md:col-span-1 flex flex-col gap-4">
 <div class="flex items-center gap-3">
-<div class="size-8 bg-blurple/20 rounded-md flex items-center justify-center text-blurple">
+<div class="size-8 bg-accent/20 rounded-md flex items-center justify-center text-accent">
 <span class="material-symbols-outlined text-[20px]">psychology</span>
 </div>
 <span class="text-text-normal font-bold text-lg font-sans">FlopIQ</span>
@@ -329,30 +484,30 @@
 <div class="col-span-1">
 <h4 class="text-text-normal font-bold mb-4 text-sm uppercase tracking-wider font-mono">Product</h4>
 <ul class="flex flex-col gap-2 text-sm text-text-muted">
-<li><a class="hover:text-blurple transition-colors" href="#">Features</a></li>
-<li><a class="hover:text-blurple transition-colors" href="#">Pricing</a></li>
-<li><a class="hover:text-blurple transition-colors" href="#">Changelog</a></li>
+<li><a class="hover:text-accent transition-colors" href="#">Features</a></li>
+<li><a class="hover:text-accent transition-colors" href="#">Pricing</a></li>
+<li><a class="hover:text-accent transition-colors" href="#">Changelog</a></li>
 </ul>
 </div>
 <div class="col-span-1">
 <h4 class="text-text-normal font-bold mb-4 text-sm uppercase tracking-wider font-mono">Resources</h4>
 <ul class="flex flex-col gap-2 text-sm text-text-muted">
-<li><a class="hover:text-blurple transition-colors" href="#">Documentation</a></li>
-<li><a class="hover:text-blurple transition-colors" href="#">Community</a></li>
-<li><a class="hover:text-blurple transition-colors" href="#">Methodology</a></li>
+<li><a class="hover:text-accent transition-colors" href="#">Documentation</a></li>
+<li><a class="hover:text-accent transition-colors" href="#">Community</a></li>
+<li><a class="hover:text-accent transition-colors" href="#">Methodology</a></li>
 </ul>
 </div>
 <div class="col-span-1">
 <h4 class="text-text-normal font-bold mb-4 text-sm uppercase tracking-wider font-mono">Legal</h4>
 <ul class="flex flex-col gap-2 text-sm text-text-muted">
-<li><a class="hover:text-blurple transition-colors" href="#">Privacy Policy</a></li>
-<li><a class="hover:text-blurple transition-colors" href="#">Terms of Service</a></li>
+<li><a class="hover:text-accent transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-accent transition-colors" href="#">Terms of Service</a></li>
 </ul>
 </div>
 </div>
 <div class="max-w-6xl mx-auto border-t border-bg-dark pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
 <div class="text-text-faint text-xs font-mono">
-                © 2023 FlopIQ Inc. All rights reserved.
+                © 2024 FlopIQ Inc. All rights reserved.
             </div>
 <div class="flex gap-4">
 <a class="text-text-faint hover:text-text-normal transition-colors" href="#">
@@ -367,5 +522,31 @@
 </div>
 </footer>
 </div>
+
+<script>
+    // Theme switching functionality
+    function setTheme(themeName) {
+        document.documentElement.setAttribute('data-theme', themeName);
+        localStorage.setItem('flopiq-theme', themeName);
+        updateThemeButtons(themeName);
+    }
+
+    function updateThemeButtons(activeTheme) {
+        document.querySelectorAll('.theme-btn').forEach(btn => {
+            const btnTheme = btn.getAttribute('data-theme-btn');
+            if (btnTheme === activeTheme) {
+                btn.classList.add('bg-bg-light', 'ring-2', 'ring-accent/50');
+            } else {
+                btn.classList.remove('bg-bg-light', 'ring-2', 'ring-accent/50');
+            }
+        });
+    }
+
+    // Initialize theme on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        const savedTheme = localStorage.getItem('flopiq-theme') || 'night-session';
+        updateThemeButtons(savedTheme);
+    });
+</script>
 
 </body></html>
