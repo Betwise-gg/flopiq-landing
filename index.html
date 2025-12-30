@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FlopIQ - Social Poker Intelligence</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    // Discord-inspired palette mapping
+                    "bg-darkest": "#111214", // Main page background
+                    "bg-darker": "#1e1f22",  // Secondary sections
+                    "bg-dark": "#2b2d31",    // Cards/Containers
+                    "bg-default": "#313338", // Elements
+                    "bg-light": "#383a40",   // Hovers
+                    // Brand colors
+                    "blurple": "#5865F2",
+                    "blurple-hover": "#4752c4",
+                    "sun-gold": "#F0B232",
+                    "teal-deep": "#248046",
+                    "green": "#23A559",
+                    "red": "#DA373C",
+                    // Text
+                    "text-normal": "#F2F3F5",
+                    "text-muted": "#B5BAC1",
+                    "text-faint": "#949BA4",
+                    "text-link": "#00A8FC",
+                },
+                fontFamily: {
+                    "sans": ["Inter", "sans-serif"],
+                    "mono": ["JetBrains Mono", "monospace"],
+                },
+                borderRadius: {
+                    "DEFAULT": "4px",
+                    "md": "8px",
+                    "lg": "12px",
+                    "xl": "16px",
+                    "2xl": "24px",
+                },
+                boxShadow: {
+                    "glow": "0 0 20px rgba(88, 101, 242, 0.15)",
+                }
+            },
+        },
+    }
+</script>
+<style type="text/tailwindcss">
+    @layer utilities {
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .text-balance {
+            text-wrap: balance;
+        }
+    }
+</style>
+</head>
+<body class="bg-bg-darkest font-sans text-text-normal overflow-x-hidden antialiased selection:bg-blurple selection:text-white">
+<div class="relative flex min-h-screen flex-col">
+<header class="sticky top-0 z-50 flex w-full items-center justify-between border-b border-bg-dark bg-bg-darkest/90 backdrop-blur-md px-4 py-4 md:px-8 lg:px-12">
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center size-10 bg-blurple rounded-lg text-white shadow-lg shadow-blurple/20">
+<span class="material-symbols-outlined text-[24px]">psychology</span>
+</div>
+<h2 class="text-text-normal text-lg font-bold tracking-tight font-sans">FlopIQ</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-text-muted hover:text-text-normal text-sm font-medium transition-colors" href="#features">Features</a>
+<a class="text-text-muted hover:text-text-normal text-sm font-medium transition-colors" href="#players">Players</a>
+<a class="text-text-muted hover:text-text-normal text-sm font-medium transition-colors" href="#coaches">Coaches</a>
+<a class="text-text-muted hover:text-text-normal text-sm font-medium transition-colors" href="#methodology">Methodology</a>
+</nav>
+<button class="flex cursor-pointer items-center justify-center rounded-md bg-blurple px-5 py-2 text-white text-sm font-semibold transition-all hover:bg-blurple-hover hover:shadow-glow active:translate-y-[1px]">
+            Request Access
+        </button>
+</header>
+<section class="relative flex flex-col items-center justify-center pt-20 pb-24 px-4 md:px-10 lg:pt-32 lg:pb-40 overflow-hidden">
+<div class="absolute inset-0 z-0 select-none pointer-events-none">
+<div class="absolute inset-0 w-full h-full bg-cover bg-center opacity-10 mix-blend-overlay" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBy9mVJtP0bndaaGTMrLKH5oN_iNC7VV8VuJGo8ucRzflsL5HeEdL4ZcjRUxHdb0QVbE1O2aKTLCS7bj_SFFvodl3hkf021zAGojFzG8QTPWuipuRBLlh5p5dz5zM-WCj7Krfl_1ryYFJWJxVuIg3iTCNaHrIOV4nLjX9aUILJ9KqQEZzI8EbhqsqxFGLQ1cdxofMmH6IMRUyVQdSIMvdlhYv2LcwQFU8yBu0567c2sX3IvC_LLN4CtNupU2oP2EBQGcxyt4dJd");'></div>
+<div class="absolute inset-0 bg-gradient-to-b from-bg-darkest via-bg-darkest/80 to-bg-darkest"></div>
+<div class="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blurple/10 rounded-full blur-[100px]"></div>
+</div>
+<div class="relative z-10 max-w-5xl text-center flex flex-col items-center gap-6">
+<div class="inline-flex items-center gap-2 rounded-full border border-blurple/30 bg-blurple/10 px-4 py-1.5 mb-2 transition-colors hover:bg-blurple/15 hover:border-blurple/50 cursor-default">
+<span class="flex h-2 w-2 rounded-full bg-green shadow-[0_0_8px_rgba(35,165,89,0.6)]"></span>
+<span class="text-xs font-mono font-medium tracking-wide text-text-normal uppercase">Early Access Alpha</span>
+</div>
+<h1 class="text-5xl md:text-7xl font-black leading-[1.05] tracking-tight text-white drop-shadow-sm text-balance">
+                Understand the Game. <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-blurple to-indigo-400">Discuss the Hand.</span>
+</h1>
+<p class="text-text-muted text-lg md:text-xl font-normal leading-relaxed max-w-2xl text-balance">
+                FlopIQ is the social-first intelligence platform for serious players. Move beyond rote memorization and start reasoning with a community.
+            </p>
+<div class="flex flex-col sm:flex-row gap-4 mt-8 w-full justify-center">
+<button class="h-12 px-8 rounded-md bg-blurple text-white font-semibold text-base hover:bg-blurple-hover shadow-lg shadow-blurple/20 transition-all transform hover:-translate-y-0.5">
+                    Start Analyzing
+                </button>
+<button class="h-12 px-8 rounded-md bg-bg-dark border border-bg-light text-text-normal font-medium text-base hover:bg-bg-light hover:border-text-muted/30 transition-all">
+                    View Interactive Demo
+                </button>
+</div>
+<div class="mt-12 flex items-center justify-center gap-6 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
+<div class="flex -space-x-3">
+<div class="size-8 rounded-full bg-gray-600 border-2 border-bg-darkest"></div>
+<div class="size-8 rounded-full bg-gray-500 border-2 border-bg-darkest"></div>
+<div class="size-8 rounded-full bg-gray-400 border-2 border-bg-darkest"></div>
+<div class="size-8 rounded-full bg-bg-dark border-2 border-bg-darkest flex items-center justify-center text-[10px] text-white font-mono">+2k</div>
+</div>
+<span class="text-sm text-text-faint font-mono">analyzing hands right now</span>
+</div>
+</div>
+</section>
+<section class="relative py-24 px-4 md:px-10 bg-bg-darker border-t border-bg-dark">
+<div class="max-w-6xl mx-auto">
+<div class="mb-16 md:flex md:items-end md:justify-between">
+<div class="max-w-2xl">
+<h2 class="text-white text-3xl font-bold mb-4 tracking-tight">The Problem with Current Study</h2>
+<p class="text-text-muted text-lg leading-relaxed">Traditional tools isolate you in a vacuum of data. FlopIQ connects the data back to the reasoning.</p>
+</div>
+<div class="hidden md:block h-px flex-1 bg-bg-dark ml-12 mb-6"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="group relative flex flex-col gap-6 rounded-xl bg-bg-dark p-8 border border-transparent hover:border-bg-light transition-all duration-300">
+<div class="absolute inset-0 bg-gradient-to-br from-bg-light/10 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative z-10 flex items-start justify-between">
+<div class="size-12 rounded-lg bg-bg-light flex items-center justify-center text-red">
+<span class="material-symbols-outlined text-[28px]">person_off</span>
+</div>
+<span class="font-mono text-xs text-red bg-red/10 px-2 py-1 rounded">FAILURE POINT</span>
+</div>
+<div class="relative z-10 flex flex-col gap-3">
+<h3 class="text-text-normal text-xl font-bold">Isolated Study</h3>
+<p class="text-text-muted leading-relaxed">Learning alone creates blind spots. Without peer review, you reinforce bad habits thinking they are optimal strategies. You become an island of potential misconceptions.</p>
+</div>
+</div>
+<div class="group relative flex flex-col gap-6 rounded-xl bg-bg-dark p-8 border border-transparent hover:border-bg-light transition-all duration-300">
+<div class="absolute inset-0 bg-gradient-to-br from-bg-light/10 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative z-10 flex items-start justify-between">
+<div class="size-12 rounded-lg bg-bg-light flex items-center justify-center text-sun-gold">
+<span class="material-symbols-outlined text-[28px]">data_table</span>
+</div>
+<span class="font-mono text-xs text-sun-gold bg-sun-gold/10 px-2 py-1 rounded">FAILURE POINT</span>
+</div>
+<div class="relative z-10 flex flex-col gap-3">
+<h3 class="text-text-normal text-xl font-bold">Dry Solver Outputs</h3>
+<p class="text-text-muted leading-relaxed">EV numbers don't explain the 'why'. Rote memorization of grid outputs fails under pressure. You need to understand the mechanics, not just memorize the answers.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="relative py-24 px-4 md:px-10 bg-bg-darkest" id="features">
+<div class="max-w-6xl mx-auto">
+<div class="text-center mb-20">
+<span class="text-blurple font-mono text-xs font-bold tracking-wider uppercase mb-3 block">Platform Features</span>
+<h2 class="text-white text-3xl md:text-5xl font-bold mb-6">Built for Structured Reasoning</h2>
+<p class="text-text-muted text-lg max-w-2xl mx-auto">A suite of tools designed to capture your thought process, facilitate discussion, and refine your logic.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="group flex flex-col p-6 rounded-xl bg-bg-darker border border-bg-dark hover:bg-bg-dark hover:border-blurple/30 transition-all duration-300">
+<div class="size-10 mb-5 text-blurple bg-blurple/10 rounded-md flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined">edit_note</span>
+</div>
+<h3 class="text-text-normal font-bold text-lg mb-3">Intuitive Entry</h3>
+<p class="text-text-muted text-sm leading-relaxed">Input hands quickly with a UI focused on positions and action sequences. No clunky suit selectors.</p>
+</div>
+<div class="group flex flex-col p-6 rounded-xl bg-bg-darker border border-bg-dark hover:bg-bg-dark hover:border-blurple/30 transition-all duration-300">
+<div class="size-10 mb-5 text-green bg-green/10 rounded-md flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined">replay</span>
+</div>
+<h3 class="text-text-normal font-bold text-lg mb-3">Visual Replayer</h3>
+<p class="text-text-muted text-sm leading-relaxed">Watch the hand unfold step-by-step. Pause, annotate specific moments, and branch into "what-if" scenarios.</p>
+</div>
+<div class="group flex flex-col p-6 rounded-xl bg-bg-darker border border-bg-dark hover:bg-bg-dark hover:border-blurple/30 transition-all duration-300">
+<div class="size-10 mb-5 text-sun-gold bg-sun-gold/10 rounded-md flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined">forum</span>
+</div>
+<h3 class="text-text-normal font-bold text-lg mb-3">Threaded Logic</h3>
+<p class="text-text-muted text-sm leading-relaxed">Discussions are attached to specific streets or actions. Keep the debate focused on the decision point.</p>
+</div>
+<div class="group flex flex-col p-6 rounded-xl bg-bg-darker border border-bg-dark hover:bg-bg-dark hover:border-blurple/30 transition-all duration-300">
+<div class="size-10 mb-5 text-teal-deep bg-teal-deep/10 rounded-md flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined">psychology_alt</span>
+</div>
+<h3 class="text-text-normal font-bold text-lg mb-3">AI Assistant</h3>
+<p class="text-text-muted text-sm leading-relaxed">Get instant feedback on potential logic gaps in your analysis, powered by poker theory models.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 px-4 md:px-10 bg-bg-darker border-y border-bg-dark">
+<div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 lg:gap-24">
+<div class="flex flex-col gap-6" id="players">
+<div class="flex items-center gap-4">
+<div class="p-3 rounded-lg bg-bg-dark border border-bg-light">
+<span class="material-symbols-outlined text-text-normal text-3xl">person</span>
+</div>
+<h2 class="text-2xl font-bold text-text-normal">For Players</h2>
+</div>
+<p class="text-text-muted text-lg">
+                    Move beyond "standard" plays. Get feedback that actually explains the <em class="text-text-normal not-italic">why</em> behind the variance.
+                </p>
+<div class="flex flex-col gap-4 mt-4">
+<div class="flex gap-4 items-start group">
+<div class="mt-1 size-5 rounded-full bg-green/10 flex items-center justify-center shrink-0 group-hover:bg-green/20 transition-colors">
+<span class="material-symbols-outlined text-green text-[14px] font-bold">check</span>
+</div>
+<span class="text-text-normal group-hover:text-white transition-colors">Document your thought process for later review.</span>
+</div>
+<div class="flex gap-4 items-start group">
+<div class="mt-1 size-5 rounded-full bg-green/10 flex items-center justify-center shrink-0 group-hover:bg-green/20 transition-colors">
+<span class="material-symbols-outlined text-green text-[14px] font-bold">check</span>
+</div>
+<span class="text-text-normal group-hover:text-white transition-colors">Build a trusted circle of study partners.</span>
+</div>
+<div class="flex gap-4 items-start group">
+<div class="mt-1 size-5 rounded-full bg-green/10 flex items-center justify-center shrink-0 group-hover:bg-green/20 transition-colors">
+<span class="material-symbols-outlined text-green text-[14px] font-bold">check</span>
+</div>
+<span class="text-text-normal group-hover:text-white transition-colors">Track leaks in your reasoning, not just your stats.</span>
+</div>
+</div>
+<div class="mt-6">
+<a class="text-blurple font-mono text-sm font-bold hover:text-blurple-hover transition-colors flex items-center gap-2 group w-max" href="#">
+                        Explore Player Features <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="flex flex-col gap-6 md:border-l md:border-bg-dark md:pl-16" id="coaches">
+<div class="flex items-center gap-4">
+<div class="p-3 rounded-lg bg-bg-dark border border-bg-light">
+<span class="material-symbols-outlined text-sun-gold text-3xl">school</span>
+</div>
+<h2 class="text-2xl font-bold text-text-normal">For Coaches</h2>
+</div>
+<p class="text-text-muted text-lg">
+                    Scale your coaching business. Manage student rosters and review hands efficiently in one place.
+                </p>
+<div class="flex flex-col gap-4 mt-4">
+<div class="flex gap-4 items-start group">
+<div class="mt-1 size-5 rounded-full bg-sun-gold/10 flex items-center justify-center shrink-0 group-hover:bg-sun-gold/20 transition-colors">
+<span class="material-symbols-outlined text-sun-gold text-[14px] font-bold">check</span>
+</div>
+<span class="text-text-normal group-hover:text-white transition-colors">Organize student hands into review queues.</span>
+</div>
+<div class="flex gap-4 items-start group">
+<div class="mt-1 size-5 rounded-full bg-sun-gold/10 flex items-center justify-center shrink-0 group-hover:bg-sun-gold/20 transition-colors">
+<span class="material-symbols-outlined text-sun-gold text-[14px] font-bold">check</span>
+</div>
+<span class="text-text-normal group-hover:text-white transition-colors">Provide annotated feedback directly on the timeline.</span>
+</div>
+<div class="flex gap-4 items-start group">
+<div class="mt-1 size-5 rounded-full bg-sun-gold/10 flex items-center justify-center shrink-0 group-hover:bg-sun-gold/20 transition-colors">
+<span class="material-symbols-outlined text-sun-gold text-[14px] font-bold">check</span>
+</div>
+<span class="text-text-normal group-hover:text-white transition-colors">Create private study groups for your community.</span>
+</div>
+</div>
+<div class="mt-6">
+<a class="text-sun-gold font-mono text-sm font-bold hover:text-yellow-400 transition-colors flex items-center gap-2 group w-max" href="#">
+                        See Coach Tools <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 px-4 bg-bg-darkest" id="methodology">
+<div class="max-w-4xl mx-auto text-center">
+<h2 class="text-white text-2xl md:text-3xl font-bold mb-10">Clarity over Complexity</h2>
+<div class="flex flex-wrap justify-center gap-4">
+<div class="flex items-center gap-2 px-5 py-3 rounded-full border border-bg-light bg-bg-darker text-text-muted hover:border-red/50 hover:bg-bg-dark hover:text-text-normal transition-all duration-300 select-none">
+<span class="material-symbols-outlined text-red text-lg">close</span>
+<span class="text-sm font-medium">No Confusing Solver Charts</span>
+</div>
+<div class="flex items-center gap-2 px-5 py-3 rounded-full border border-bg-light bg-bg-darker text-text-muted hover:border-red/50 hover:bg-bg-dark hover:text-text-normal transition-all duration-300 select-none">
+<span class="material-symbols-outlined text-red text-lg">close</span>
+<span class="text-sm font-medium">No Raw EV Spreadsheets</span>
+</div>
+<div class="flex items-center gap-2 px-5 py-3 rounded-full border border-bg-light bg-bg-darker text-text-muted hover:border-red/50 hover:bg-bg-dark hover:text-text-normal transition-all duration-300 select-none">
+<span class="material-symbols-outlined text-red text-lg">close</span>
+<span class="text-sm font-medium">No Gambling Noise</span>
+</div>
+<div class="flex items-center gap-2 px-5 py-3 rounded-full border border-bg-light bg-bg-darker text-text-muted hover:border-red/50 hover:bg-bg-dark hover:text-text-normal transition-all duration-300 select-none">
+<span class="material-symbols-outlined text-red text-lg">close</span>
+<span class="text-sm font-medium">No Distractions</span>
+</div>
+</div>
+<p class="mt-10 text-text-faint max-w-xl mx-auto text-sm leading-relaxed">
+                FlopIQ is designed for humans, not bots. We strip away the noise so you can focus on the logic that actually translates to winning decisions at the table.
+            </p>
+</div>
+</section>
+<section class="py-32 px-4 text-center bg-bg-darker relative overflow-hidden border-t border-bg-dark">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blurple/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="relative z-10 max-w-2xl mx-auto flex flex-col items-center gap-8">
+<h2 class="text-white text-4xl md:text-5xl font-black tracking-tight">Join the Inner Circle</h2>
+<p class="text-text-muted text-lg text-balance">
+                Stop guessing. Start understanding. Join a community of serious players dedicated to the craft of poker.
+            </p>
+<div class="flex flex-col items-center gap-3 w-full">
+<button class="flex w-full sm:w-auto cursor-pointer items-center justify-center rounded-md h-14 px-10 bg-blurple text-white text-lg font-bold shadow-lg shadow-blurple/20 hover:bg-blurple-hover hover:scale-[1.02] transition-all">
+                    Request Early Access
+                </button>
+<p class="text-text-faint text-xs font-mono">Restricted access during beta. No credit card required.</p>
+</div>
+</div>
+</section>
+<footer class="bg-bg-darkest border-t border-bg-dark px-6 py-12 md:px-12">
+<div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+<div class="col-span-1 md:col-span-1 flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<div class="size-8 bg-blurple/20 rounded-md flex items-center justify-center text-blurple">
+<span class="material-symbols-outlined text-[20px]">psychology</span>
+</div>
+<span class="text-text-normal font-bold text-lg font-sans">FlopIQ</span>
+</div>
+<p class="text-text-faint text-sm leading-relaxed">
+                    Social-first poker intelligence for the modern player.
+                </p>
+</div>
+<div class="col-span-1">
+<h4 class="text-text-normal font-bold mb-4 text-sm uppercase tracking-wider font-mono">Product</h4>
+<ul class="flex flex-col gap-2 text-sm text-text-muted">
+<li><a class="hover:text-blurple transition-colors" href="#">Features</a></li>
+<li><a class="hover:text-blurple transition-colors" href="#">Pricing</a></li>
+<li><a class="hover:text-blurple transition-colors" href="#">Changelog</a></li>
+</ul>
+</div>
+<div class="col-span-1">
+<h4 class="text-text-normal font-bold mb-4 text-sm uppercase tracking-wider font-mono">Resources</h4>
+<ul class="flex flex-col gap-2 text-sm text-text-muted">
+<li><a class="hover:text-blurple transition-colors" href="#">Documentation</a></li>
+<li><a class="hover:text-blurple transition-colors" href="#">Community</a></li>
+<li><a class="hover:text-blurple transition-colors" href="#">Methodology</a></li>
+</ul>
+</div>
+<div class="col-span-1">
+<h4 class="text-text-normal font-bold mb-4 text-sm uppercase tracking-wider font-mono">Legal</h4>
+<ul class="flex flex-col gap-2 text-sm text-text-muted">
+<li><a class="hover:text-blurple transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-blurple transition-colors" href="#">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-6xl mx-auto border-t border-bg-dark pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="text-text-faint text-xs font-mono">
+                © 2023 FlopIQ Inc. All rights reserved.
+            </div>
+<div class="flex gap-4">
+<a class="text-text-faint hover:text-text-normal transition-colors" href="#">
+<span class="sr-only">Twitter</span>
+<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg>
+</a>
+<a class="text-text-faint hover:text-text-normal transition-colors" href="#">
+<span class="sr-only">GitHub</span>
+<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill-rule="evenodd"></path></svg>
+</a>
+</div>
+</div>
+</footer>
+</div>
+
+</body></html>
