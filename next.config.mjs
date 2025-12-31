@@ -1,17 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Enable standalone output for Docker deployments
-  output: process.env.NEXT_OUTPUT_STANDALONE === 'true' ? 'standalone' : undefined,
+  // Static export for Cloudflare Pages deployment
+  output: 'export',
   eslint: {
     ignoreDuringBuilds: true,
   },
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "**.flopiq.com",
-      },
-    ],
+    unoptimized: true,
   },
   poweredByHeader: false,
 };
