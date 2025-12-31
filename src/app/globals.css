@@ -1,0 +1,319 @@
+@import "tailwindcss";
+
+/*
+  FlopIQ - Clean, Confident, Best-in-Class
+  Inspired by GTO Wizard's focused aesthetic
+*/
+
+:root {
+  /* Background layers */
+  --bg-deep: #0a0d12;
+  --bg-primary: #0f1218;
+  --bg-elevated: #161b22;
+  --bg-surface: #1e242c;
+
+  /* Brand colors */
+  --brand-teal: #0d9488;
+  --brand-teal-bright: #14b8a6;
+  --brand-gold: #fbbf24;
+  --brand-orange: #f97316;
+
+  /* Text */
+  --text-primary: #f0f6fc;
+  --text-secondary: #8b949e;
+  --text-muted: #6e7681;
+
+  /* Borders */
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-default: rgba(255, 255, 255, 0.1);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+@theme inline {
+  --color-bg-deep: var(--bg-deep);
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-bg-surface: var(--bg-surface);
+  --color-brand-teal: var(--brand-teal);
+  --color-brand-teal-bright: var(--brand-teal-bright);
+  --color-brand-gold: var(--brand-gold);
+  --color-brand-orange: var(--brand-orange);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border-default);
+  --font-sans: var(--font-geist), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-geist), system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* 
+  Typography Scale (based on 1.25 ratio)
+  ------------------------------------------
+  Display: 4.5rem (72px) - Hero main headline
+  H1: 3.5rem (56px) - Large section headlines  
+  H2: 2.5rem (40px) - Section headlines
+  H3: 1.25rem (20px) - Card titles
+  H4: 1rem (16px) - Subsection titles
+  Body: 1rem (16px) - Default body
+  Body-lg: 1.125rem (18px) - Lead paragraphs
+  Small: 0.875rem (14px) - Supporting text
+  XS: 0.75rem (12px) - Labels, badges
+*/
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+h1 { font-size: 3.5rem; }
+h2 { font-size: 2.5rem; }
+h3 { font-size: 1.25rem; letter-spacing: -0.01em; }
+h4 { font-size: 1rem; letter-spacing: 0; }
+
+p {
+  line-height: 1.7;
+}
+
+/* Responsive typography */
+@media (min-width: 640px) {
+  h1 { font-size: 4rem; }
+  h2 { font-size: 3rem; }
+}
+
+@media (min-width: 768px) {
+  h1 { font-size: 4.5rem; }
+  h2 { font-size: 3.5rem; }
+}
+
+/* Display text - for hero headlines */
+.text-display {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+@media (min-width: 640px) {
+  .text-display { font-size: 3.25rem; }
+}
+
+@media (min-width: 768px) {
+  .text-display { font-size: 4rem; }
+}
+
+@media (min-width: 1024px) {
+  .text-display { font-size: 4.5rem; }
+}
+
+/* Section headline */
+.text-section {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+@media (min-width: 640px) {
+  .text-section { font-size: 2.5rem; }
+}
+
+@media (min-width: 768px) {
+  .text-section { font-size: 3rem; }
+}
+
+/* Card title */
+.text-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+/* Lead paragraph */
+.text-lead {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+@media (min-width: 640px) {
+  .text-lead { font-size: 1.25rem; }
+}
+
+/* Body text */
+.text-body {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+/* Small text */
+.text-small {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Container */
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+/* Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  font-size: 0.9375rem; /* 15px */
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--bg-deep);
+  background: linear-gradient(135deg, var(--brand-gold) 0%, var(--brand-orange) 100%);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.25);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(251, 191, 36, 0.4);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  font-size: 0.9375rem; /* 15px */
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  background: transparent;
+  border: 1px solid var(--border-default);
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  border-color: var(--brand-teal);
+  background: rgba(13, 148, 136, 0.1);
+}
+
+/* Cards */
+.card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 32px;
+  transition: border-color 0.3s ease;
+}
+
+.card:hover {
+  border-color: var(--border-default);
+}
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-size: 0.6875rem; /* 11px */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: 6px;
+}
+
+.badge-gold {
+  background: rgba(251, 191, 36, 0.12);
+  color: var(--brand-gold);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+}
+
+.badge-teal {
+  background: rgba(13, 148, 136, 0.12);
+  color: var(--brand-teal-bright);
+  border: 1px solid rgba(13, 148, 136, 0.2);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--brand-teal-bright) 0%, var(--brand-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Selection */
+::selection {
+  background: var(--brand-teal);
+  color: white;
+}
+
+/* Focus */
+:focus-visible {
+  outline: 2px solid var(--brand-teal);
+  outline-offset: 2px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-surface);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bg-elevated);
+}
+
+/* Section divider */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-default), transparent);
+}
