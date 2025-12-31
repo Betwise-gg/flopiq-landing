@@ -8,70 +8,57 @@ export default function HeroSection() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-bg-deep">
-        {/* Teal glow at top */}
+        {/* Gradient glow */}
         <div
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[700px] opacity-25"
+          className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] opacity-30"
           style={{
             background:
-              "radial-gradient(ellipse at center, rgba(13, 148, 136, 0.25) 0%, transparent 70%)",
+              "radial-gradient(ellipse at center, rgba(251, 191, 36, 0.15) 0%, rgba(13, 148, 136, 0.1) 40%, transparent 70%)",
           }}
         />
       </div>
 
-      <div className="relative z-10 wrapper py-32 text-center">
+      <div className="relative z-10 wrapper py-24 text-center">
         {/* Alpha badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex justify-center mb-8"
+          className="flex justify-center mb-10"
         >
           <div className="badge badge-gold">
-            <span className="w-2 h-2 rounded-full bg-brand-gold" />
-            Now in Private Alpha
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse" />
+            Private Alpha
           </div>
         </motion.div>
 
         {/* Main headline */}
-        <div className="mb-8 overflow-hidden">
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="text-display text-text-secondary"
-          >
-            Capture. Replay. Understand.
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="text-display text-text-primary mt-2"
-          >
-            Finally, Hand Review That Works.
-          </motion.p>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-6"
+        >
+          <h1 className="text-display">
+            <span className="text-text-secondary">Capture. Replay.</span>
+            <br />
+            <span className="text-text-primary">Understand.</span>
+          </h1>
+        </motion.div>
 
         {/* Subheadline */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-lead max-w-2xl mx-auto mb-12"
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="text-lg sm:text-xl text-text-secondary max-w-xl mx-auto mb-10 leading-relaxed"
         >
-          FlopIQ makes hand capture{" "}
-          <span className="text-brand-teal-bright font-semibold">
-            fast enough that you&apos;ll actually do it
-          </span>
-          . Replay hands visually, ask &quot;what did I do wrong?&quot;, and get{" "}
-          <span className="text-brand-gold font-semibold">
-            clear explanations—not just numbers
-          </span>
-          .
+          Log hands in seconds, replay them visually, and ask{" "}
+          <span className="text-text-primary">&quot;what did I do wrong?&quot;</span>{" "}
+          Get clear explanations—not just solver frequencies.
         </motion.p>
 
         {/* CTAs */}
@@ -79,7 +66,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.8 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <Link href="#early-access">
@@ -117,9 +104,39 @@ export default function HeroSection() {
               >
                 <polygon points="5 3 19 12 5 21 5 3" />
               </svg>
-              See How It Works
+              How It Works
             </motion.button>
           </Link>
+        </motion.div>
+
+        {/* Social proof hint */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.9 }}
+          className="mt-16 flex items-center justify-center gap-6 text-sm text-text-muted"
+        >
+          <div className="flex items-center gap-2">
+            <svg className="w-4 h-4 text-brand-teal-bright" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            Post-session only
+          </div>
+          <div className="w-px h-4 bg-white/10" />
+          <div className="flex items-center gap-2">
+            <svg className="w-4 h-4 text-brand-teal-bright" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            Free during alpha
+          </div>
+          <div className="w-px h-4 bg-white/10" />
+          <div className="flex items-center gap-2">
+            <svg className="w-4 h-4 text-brand-teal-bright" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            No solver needed
+          </div>
         </motion.div>
       </div>
 
